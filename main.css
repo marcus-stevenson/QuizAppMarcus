@@ -34,3 +34,23 @@
 .responseBtn{
     margin: auto;
 }
+@media screen and (min-width: 700px){
+    .mainTitle{
+        background: gainsboro;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (min-width: 1300px){
+    .userFeedback{
+        display: flex;
+        flex-direction: row;
+    }
+    .userFeedback *{
+        margin-left: 5px;
+    }
+    .innerContainer{
+        display: flex;
+        flex-direction: row;
+    }
+}
