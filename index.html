@@ -4,21 +4,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Who painted this?</title>
         <link rel="stylesheet" type="text/css" href="main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+   </head>
     <body>
         <header>
             <div class="mainTitle">
                 <h1>Who Painted This?</h1>
                 <div class="userFeedback">
-                    <h3>Question: 1/10</h3>
-                    <h3>Score: 0/10</h3>
-                    <input type="reset" value="restart" class="restartBtn">
+                    <h3 class="js-Q-Counter">Question: 0/10</h3>
+                    <h3 class="js-S-Counter">Score: 0/10</h3>
+                    <input type="reset" value="restart" class="js-restartBtn">
                 </div>
             </div>
         </header>
         <main>
+            <div class="Box js-Q-box">
+                <h1 class="js-startPg">Who Painted This?</h1>
+            </div>
+            <div class="Box js-A-box">
+                <input type="button" value="start" class="js-startBtn js-startPg">
+            </div>
         </main>
-        <script src="index.js"></script>
+        <script type="text/javascript" src="index.js"></script>
     </body>
 </html>
