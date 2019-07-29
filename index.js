@@ -54,7 +54,6 @@ function renderQuestion(){
     questionCounter +=1;
     let scrambleAns = [falseAnsArray[0].artist, falseAnsArray[1].artist, falseAnsArray[4].artist, falseAnsArray[2].artist, currentCorrect];
     arrayShuffler(1, scrambleAns);
-    alert(currentCorrect);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
     $('.js-Q-box').html(`<h2>Who painted ${currentPainting}?</h2>`);
     $('.js-A-box').html(
@@ -62,12 +61,16 @@ function renderQuestion(){
         `<button type="button" class="responseBtn">${scrambleAns[1]}</button>`+
         `<button type="button" class="responseBtn">${scrambleAns[2]}</button>`+ 
         `<button type="button" class="responseBtn">${scrambleAns[3]}</button>`);
+    onAnsClick();
 }
 function onAnsClick(){
     //listen for click on answer buttons
     //on click, run function that renders user feedback page, pass argument 
     //if answer is correct or incorrect
     //record score
+    $('.responseBtn').on('click', function(e){
+        alert($(this).text());
+    })
 }
 function renderFeedbackPg(){
     //if argument supplied is correct, populuate 'correct info'
