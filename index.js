@@ -14,9 +14,6 @@ let questionCounter= 0;
 let scoreCounter= 0;
 
 function startQuiz(){
-    //render start page
-    //listen for click on start button and render first queston screen
-    // listen for click on restart button and render first question, reset score
     $('.js-restartBtn').on('click', function(){
         alert('this');
     });
@@ -47,38 +44,60 @@ function renderQuestion(){
     //display painting in prompt element
     //pick 3 random artists from the other paintings
     //populate answer buttons with resources/info
+    let dummyArray = questionAns.slice();
     let currentPainting = questionAns[questionCounter].painting;
     let currentCorrect = questionAns[questionCounter].artist;
     let currentQ = questionCounter;
-    let falseAnsArray = arrayShuffler(currentQ, questionAns);
+    let falseAnsArray = arrayShuffler(currentQ, dummyArray);
     questionCounter +=1;
-    let scrambleAns = [falseAnsArray[0].artist, falseAnsArray[1].artist, falseAnsArray[4].artist, falseAnsArray[2].artist, currentCorrect];
+    let scrambleAns = [falseAnsArray[7].artist, falseAnsArray[6].artist, falseAnsArray[4].artist, falseAnsArray[2].artist, currentCorrect];
     arrayShuffler(1, scrambleAns);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
-    $('.js-Q-box').html(`<h2>Who painted ${currentPainting}?</h2>`);
+    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2>`);
     $('.js-A-box').html(
         `<button type="button" class="responseBtn">${scrambleAns[0]}</button>`+
         `<button type="button" class="responseBtn">${scrambleAns[1]}</button>`+
         `<button type="button" class="responseBtn">${scrambleAns[2]}</button>`+ 
         `<button type="button" class="responseBtn">${scrambleAns[3]}</button>`);
-    onAnsClick();
+    onAnsClick(currentCorrect);
 }
-function onAnsClick(){
+function onAnsClick(correctAns){
     //listen for click on answer buttons
     //on click, run function that renders user feedback page, pass argument 
     //if answer is correct or incorrect
     //record score
     $('.responseBtn').on('click', function(e){
-        alert($(this).text());
+        if(questionCounter===10){
+            finishedQuiz();
+        }else if($(this).text()===correctAns){
+            scoreCounter += 1;
+            renderFeedbackPg(1);
+        }else{
+            renderFeedbackPg(0);
+        }
     })
 }
-function renderFeedbackPg(){
-    //if argument supplied is correct, populuate 'correct info'
-    //otherwise populate 'incorrect info'
-    //listen for click on 'next question' button and render next question when clicked
+function renderFeedbackPg(ansNum){
+    if(ansNum===1){
+        $('.js-qPrompt').remove();
+        $('.responseBtn').remove();
+        $('.js-S-Counter').html(`Score: ${scoreCounter}/10`);
+        $('.js-Q-box').html('<h2>CORRECT!</h2>');
+        $('.js-A-box').html('<button type="button" class="nextQBtn">Next Question</button>')
+    }else{
+        $('.js-qPrompt').remove();
+        $('.responseBtn').remove();
+        $('.js-Q-box').html('<h2>INCORRECT</h2>');
+        $('.js-A-box').html('<button type="button" class="nextQBtn">Next Question</button>')
+    }
+    $('.nextQBtn').on('click', function(e){
+        renderQuestion();
+    })
 }
-function lastQuestion(){
-    //after all objects in questionAns array have been displayed,
-    //show the end screen and final score, and listen for click on restart btn
+function finishedQuiz(){
+    $('.js-qPrompt').remove();
+    $('.responseBtn').remove();
+    $('.js-Q-box').html('<h2>Quiz Complete!</h2>' + `Score: ${scoreCounter}/10`);
+    $('.js-A-box').html('<button type="reset">Take Quiz Again</button>')
 }
 $(startQuiz());
