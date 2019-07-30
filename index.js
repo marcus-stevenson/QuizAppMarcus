@@ -53,7 +53,7 @@ function renderQuestion(){
     let scrambleAns = [falseAnsArray[7].artist, falseAnsArray[6].artist, falseAnsArray[4].artist, falseAnsArray[2].artist, currentCorrect];
     arrayShuffler(1, scrambleAns);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
-    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2>`);
+    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}">`);
     $('.js-A-box').html(
         `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[0]}</button>`+
         `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[1]}</button>`+
