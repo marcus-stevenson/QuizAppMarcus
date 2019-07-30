@@ -7,17 +7,16 @@ main{
 }
 .Box{
     background: gainsboro;
-    width: 40%;
+    width: 80%;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-
-}
-*{
-    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
 }
 .mainTitle{
     background: gainsboro;
@@ -25,37 +24,8 @@ main{
     margin: auto;
     padding: 15px;
 }
-.mainTitle{
-    background: gainsboro;
-    text-align: center;
-    margin: auto;
-    padding: 15px;
-}
-.prompt{
-    background: gainsboro;
-    height: 300px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:5px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-.responses{
-    background: gainsboro;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:5px;
-    display: flex;
-    flex-direction: column;
-}
-.promptPainting{
-    height: 80%;
-    margin: auto;
-}
-.responseBtn{
+.buttonCSS{
+    width: 90%;
     margin: auto;
 }
 @media screen and (min-width: 700px){
