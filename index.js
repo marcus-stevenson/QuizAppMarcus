@@ -14,7 +14,7 @@ let questionCounter= 0;
 let scoreCounter= 0;
 
 function startQuiz(){
-    $('.js-restartBtn').on('click', function(){
+    $('.js-restartBtn').on('click', function(e){
         restartQuiz();
     });
     $('.js-startBtn').on('click', function(e){
@@ -41,31 +41,25 @@ function arrayShuffler(currentQNum, inArray){
     return ansArray;
 }
 function renderQuestion(){
-    //display painting in prompt element
-    //pick 3 random artists from the other paintings
-    //populate answer buttons with resources/info
     let dummyArray = questionAns.slice();
     let currentPainting = questionAns[questionCounter].painting;
     let currentCorrect = questionAns[questionCounter].artist;
     let currentQ = questionCounter;
     let falseAnsArray = arrayShuffler(currentQ, dummyArray);
+    falseAnsArray.push(questionAns[currentQ]);
     questionCounter +=1;
-    let scrambleAns = [falseAnsArray[7].artist, falseAnsArray[6].artist, falseAnsArray[4].artist, falseAnsArray[2].artist, currentCorrect];
-    arrayShuffler(1, scrambleAns);
+    falseAnsArray.splice(0, 5)
+    arrayShuffler(1, falseAnsArray);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
-    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}">`);
+    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}" class="promptImage">`);
     $('.js-A-box').html(
-        `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[0]}</button>`+
-        `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[1]}</button>`+
-        `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[2]}</button>`+ 
-        `<button type="button" class="responseBtn js-deleter buttonCSS">${scrambleAns[3]}</button>`);
+        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer">${falseAnsArray[0].artist}</div></button>`+
+        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[1].aImg}" alt="${falseAnsArray[1].artist}" class="btnImg"><div class="btnContainer">${falseAnsArray[1].artist}</div></button>`+
+        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[2].aImg}" alt="${falseAnsArray[2].artist}" class="btnImg"><div class="btnContainer">${falseAnsArray[2].artist}</div></button>`+ 
+        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[3].aImg}" alt="${falseAnsArray[3].artist}" class="btnImg"><div class="btnContainer">${falseAnsArray[3].artist}</div></button>`);
     onAnsClick(currentCorrect);
 }
 function onAnsClick(correctAns){
-    //listen for click on answer buttons
-    //on click, run function that renders user feedback page, pass argument 
-    //if answer is correct or incorrect
-    //record score
     $('.responseBtn').on('click', function(e){
         if(questionCounter===10){
             finishedQuiz();
