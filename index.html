@@ -8,27 +8,25 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
    </head>
     <body>
-        <header>
-            <div class="mainTitle">
+        <header class="mainTitle">
                 <h1>Who Painted This?</h1>
-                <div class="userFeedback">
-                    <h2 class="js-Q-Counter">Question: 0/10</h2>
-                    <h2 class="js-S-Counter">Score: 0/10</h2>
-                    <button class="js-restartBtn"><h2>Restart</h2></button>
-                </div>
-            </div>
+                <nav class="userFeedback">
+                    <p class="js-Q-Counter">Question: 0/10</p>
+                    <p class="js-S-Counter">Score: 0/10</p>
+                    <button class="js-restartBtn"><p>Restart</p></button>
+                </nav>
         </header>
         <main>
-            <div class="innerContainer">
-                <div class="Box js-Q-box">
-                    <h1 class="js-startPg">Who Painted This?</h1>
-                </div>
-                <div class="Box js-A-box">
-                    <form class="js-A-form">
-                        <button class="js-startBtn js-startPg js-restartBtn"><h2>Start Quiz</h2></button>
-                    </form>
-                </div>
-            </div>
+            <form class="innerContainer">
+                <section class="Box js-Q-box">
+                    <h2 class="js-startPg">Who Painted This?</h2>
+                </section>
+                <section class="Box js-A-box">
+                    <fieldset class="js-fieldset">
+                        <button class="js-startBtn js-startPg js-restartBtn"><p>Start Quiz</p></button>
+                    </fieldset>
+                </section>
+            </form>
         </main>
         <script type="text/javascript" src="index.js"></script>
     </body>

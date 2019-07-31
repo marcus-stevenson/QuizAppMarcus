@@ -1,11 +1,18 @@
 *{
     box-sizing: border-box;
 }
-h1{
+html{
+    padding: 0;
+}
+fieldset{
+    border: none;
+}
+h1, h2{
     font-family: 'Raleway', sans-serif;
 }
-h2{
+p{
     font-family: 'Roboto', sans-serif;
+    font-size: 18px;
 }
 main{
     display: flex;
@@ -22,6 +29,7 @@ main{
     border-radius: 5px;
 }
 .mainTitle{
+    width: 100%;
     background: gainsboro;
     text-align: center;
     margin: auto;

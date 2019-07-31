@@ -52,11 +52,11 @@ function renderQuestion(){
     arrayShuffler(1, falseAnsArray);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
     $('.js-Q-box').html(`<h1 class='js-qPrompt'>Who painted ${currentPainting}?</h1><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}" class="promptImage">`);
-    $('.js-A-form').html(
-        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer"><h2>${falseAnsArray[0].artist}</h2></div></button>`+
-        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[1].aImg}" alt="${falseAnsArray[1].artist}" class="btnImg"><div class="btnContainer"><h2>${falseAnsArray[1].artist}</h2></div></button>`+
-        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[2].aImg}" alt="${falseAnsArray[2].artist}" class="btnImg"><div class="btnContainer"><h2>${falseAnsArray[2].artist}</h2></div></button>`+ 
-        `<button type="button" class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[3].aImg}" alt="${falseAnsArray[3].artist}" class="btnImg"><div class="btnContainer"><h2>${falseAnsArray[3].artist}</h2></div></button>`);
+    $('.js-fieldset').html(
+        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[0].artist}</p></div></button></label>`+
+        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[1].aImg}" alt="${falseAnsArray[1].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[1].artist}</p></div></button></label>`+
+        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[2].aImg}" alt="${falseAnsArray[2].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[2].artist}</p></div></button></label>`+ 
+        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[3].aImg}" alt="${falseAnsArray[3].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[3].artist}</p></div></button></label>`);
     onAnsClick(currentCorrect);
 }
 function onAnsClick(correctAns){
@@ -77,12 +77,12 @@ function renderFeedbackPg(ansNum, inAns){
         $('.responseBtn').remove();
         $('.js-S-Counter').html(`Score: ${scoreCounter}/10`);
         $('.js-Q-box').html('<h2>CORRECT!</h2>');
-        $('.js-A-form').html('<button type="button" class="nextQBtn js-restartBtn"><h2>Next Question</h2></button>')
+        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><p>Next Question</p></button>')
     }else{
         $('.js-qPrompt').remove();
         $('.responseBtn').remove();
-        $('.js-Q-box').html('<h2>INCORRECT</h2>'+`<h2>The correct answer was ${inAns}</h2>`);
-        $('.js-A-form').html('<button type="button" class="nextQBtn js-restartBtn"><h2>Next Question</h2></button>')
+        $('.js-Q-box').html('<h2>INCORRECT</h2>'+`<p>The correct answer was ${inAns}</p>`);
+        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><p>Next Question</p></button>')
     }
     $('.nextQBtn').on('click', function(e){
         renderQuestion();
@@ -92,8 +92,8 @@ function restartQuiz(){
     $('.js-qPrompt').remove();
     $('.js-deleter').remove();
     $('.responseBtn').remove();
-    $('.js-Q-box').html('<h1 class="js-startPg">Who Painted This?</h1>');
-    $('.js-A-form').html('<button class="js-startBtn js-startPg js-restartBtn"><h2>Start Quiz</h2></button>');
+    $('.js-Q-box').html('<h2 class="js-startPg">Who Painted This?</h2>');
+    $('.js-fieldset').html('<button class="js-startBtn js-startPg js-restartBtn"><p>Start Quiz</p></button>');
     questionCounter = 0;
     scoreCounter = 0;
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
@@ -104,7 +104,7 @@ function finishedQuiz(){
     $('.js-qPrompt').remove();
     $('.responseBtn').remove();
     $('.js-Q-box').html('<h2 class="js-qPrompt">Quiz Complete!</h2>' + `<h2 class="js-qPrompt">Score: ${scoreCounter}/10</h2>`);
-    $('.js-A-form').html('<button type="reset" class="js-restartBtn2 js-deleter js-restartBtn"><h2>Take Quiz Again</h2></button>')
+    $('.js-fieldset').html('<button type="reset" class="js-restartBtn2 js-deleter js-restartBtn"><h2>Take Quiz Again</h2></button>')
     $('.js-restartBtn2').on('click', function(){
         restartQuiz();
     });
