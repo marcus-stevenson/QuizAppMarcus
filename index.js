@@ -3,7 +3,7 @@ const questionAns = [
     {painting: "Campbell's Soup", artist: "Andy Warhol", pImg: "https://nyoobserver.files.wordpress.com/2011/06/andy-warhol-campbells-colored-soup-can-1965-iii-l-m.jpg?w=204&h=300", aImg: "https://media.newyorker.com/photos/590970c42179605b11ad78f0/master/w_727,c_limit/100111_r19205_p646.jpg"},
     {painting: "The Hallucinogenic Toreador", artist: "Salvador Dali", pImg: "https://upload.wikimedia.org/wikipedia/en/c/cc/The_Hallucinogenic_Toreador.png", aImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Salvador_Dal%C3%AD_1939.jpg/220px-Salvador_Dal%C3%AD_1939.jpg"},
     {painting: "Primordial Chaos", artist: "Hilma Af Klint", pImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Hilma_af_Klint%2C_1906-07%2C_Primordial_Chaos_-_No_16.jpg/220px-Hilma_af_Klint%2C_1906-07%2C_Primordial_Chaos_-_No_16.jpg", aImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Hilma_af_Klint%2C_portrait_photograph_published_in_1901.jpg/220px-Hilma_af_Klint%2C_portrait_photograph_published_in_1901.jpg"},
-    {painting: "Mountains and Sea", artist: "Helen Frankenthaler", pImg: "https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Frankenthaler_Helen_Mountains_and_Sea_1952.jpg/250px-Frankenthaler_Helen_Mountains_and_Sea_1952.jpg", aImg: "https://static01.nyt.com/images/2011/12/27/obituaries/27frankenthaler_cnd/27frankenthaler_cnd-jumbo.jpg"},
+    {painting: "Mountains and Sea", artist: "Helen Frankenthaler", pImg: "https://upload.wikimedia.org/wikipedia/en/thumb/8/88/Frankenthaler_Helen_Mountains_and_Sea_1952.jpg/250px-Frankenthaler_Helen_Mountains_and_Sea_1952.jpg", aImg: "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2011/12/29/1325174676992/Helen-Frankenthaler-001.jpg?width=620&quality=85&auto=format&fit=max&s=b8d738d0398acb4e8bbd1ceebf704f0b"},
     {painting: "Self Portrait", artist: "Frida Kahlo", pImg: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/Frida_Kahlo_%28self_portrait%29.jpg/220px-Frida_Kahlo_%28self_portrait%29.jpg", aImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/220px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg"},
     {painting: "Flowers Blooming in the World", artist: "Takeshi Murakami", pImg: "https://d5wt70d4gnm1t.cloudfront.net/media/a-s/artworks/takashi-murakami/None-134819438327/takashi-murakami-flowers-blooming-in-thie-world-and-the-land-of-nir-800x800.jpg", aImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Takashi_Murakami_at_Versailles_Sept._2010_%28crop%29.jpg/220px-Takashi_Murakami_at_Versailles_Sept._2010_%28crop%29.jpg"},
     {painting: "Naked Man", artist: "Banksy", pImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Banksy-ps.jpg/170px-Banksy-ps.jpg", aImg: "https://static1.squarespace.com/static/58c65b7c6a4963946cafbdff/58fc50b9197aea6d06a54a0a/58fd356203596e8981ca1461/1492989290495/banksy-monkey-mask-session-james-pfaff.jpg?format=750w"},
@@ -77,12 +77,12 @@ function renderFeedbackPg(ansNum, inAns){//replaces questions and answers with f
         $('.responseBtn').remove();
         $('.js-S-Counter').html(`Score: ${scoreCounter}/10`);
         $('.js-Q-box').html('<h2>CORRECT!</h2>');
-        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><p>Next Question</p></button>')
+        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><label><p>Next Question</p></label></button>')
     }else{
         $('.js-qPrompt').remove();
         $('.responseBtn').remove();
         $('.js-Q-box').html('<h2>INCORRECT</h2>'+`<p>The correct answer was ${inAns}</p>`);
-        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><p>Next Question</p></button>')
+        $('.js-fieldset').html('<button type="button" class="nextQBtn js-restartBtn"><label><p>Next Question</p></label></button>')
     }
     $('.nextQBtn').on('click', function(e){
         renderQuestion();
@@ -93,7 +93,7 @@ function restartQuiz(){// remove elements from queston and answer sections and g
     $('.js-deleter').remove();
     $('.responseBtn').remove();
     $('.js-Q-box').html('<h2 class="js-startPg">Who Painted This?</h2>');
-    $('.js-fieldset').html('<button class="js-startBtn js-startPg js-restartBtn"><p>Start Quiz</p></button>');
+    $('.js-fieldset').html('<button class="js-startBtn js-startPg js-restartBtn"><label><p>Start Quiz</p></label></button>');
     questionCounter = 0;
     scoreCounter = 0;
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
@@ -104,7 +104,7 @@ function finishedQuiz(){//show final score and restart button
     $('.js-qPrompt').remove();
     $('.responseBtn').remove();
     $('.js-Q-box').html('<h2 class="js-qPrompt">Quiz Complete!</h2>' + `<h2 class="js-qPrompt">Score: ${scoreCounter}/10</h2>`);
-    $('.js-fieldset').html('<button type="reset" class="js-restartBtn2 js-deleter js-restartBtn"><h2>Take Quiz Again</h2></button>')
+    $('.js-fieldset').html('<button type="reset" class="js-restartBtn2 js-deleter js-restartBtn"><label><p>Take Quiz Again</p></label></button>')
     $('.js-restartBtn2').on('click', function(){
         restartQuiz();
     });
