@@ -51,12 +51,12 @@ function renderQuestion(){
     falseAnsArray.splice(0, 5)
     arrayShuffler(1, falseAnsArray);
     $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
-    $('.js-Q-box').html(`<h1 class='js-qPrompt'>Who painted ${currentPainting}?</h1><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}" class="promptImage">`);
+    $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}" class="promptImage">`);
     $('.js-fieldset').html(
-        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[0].artist}</p></div></button></label>`+
-        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[1].aImg}" alt="${falseAnsArray[1].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[1].artist}</p></div></button></label>`+
-        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[2].aImg}" alt="${falseAnsArray[2].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[2].artist}</p></div></button></label>`+ 
-        `<label><button class="responseBtn js-deleter buttonCSS"><img src="${falseAnsArray[3].aImg}" alt="${falseAnsArray[3].artist}" class="btnImg"><div class="btnContainer"><p>${falseAnsArray[3].artist}</p></div></button></label>`);
+        `<button class="responseBtn js-deleter buttonCSS" id="btn1"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer"><label for="btn1"><p>${falseAnsArray[0].artist}</p><label></div></button>`+
+        `<button class="responseBtn js-deleter buttonCSS" id="btn2"><img src="${falseAnsArray[1].aImg}" alt="${falseAnsArray[1].artist}" class="btnImg"><div class="btnContainer"><label for="btn2"><p>${falseAnsArray[1].artist}</p><label></div></button>`+
+        `<button class="responseBtn js-deleter buttonCSS" id="btn3"><img src="${falseAnsArray[2].aImg}" alt="${falseAnsArray[2].artist}" class="btnImg"><div class="btnContainer"><label for="btn3"><p>${falseAnsArray[2].artist}</p><label></div></button>`+ 
+        `<button class="responseBtn js-deleter buttonCSS" id="btn4"><img src="${falseAnsArray[3].aImg}" alt="${falseAnsArray[3].artist}" class="btnImg"><div class="btnContainer"><label for="btn4"><p>${falseAnsArray[3].artist}</p><label></div></button>`);
     onAnsClick(currentCorrect);
 }
 function onAnsClick(correctAns){
