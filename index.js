@@ -14,12 +14,12 @@ let questionCounter= 0;
 let scoreCounter= 0;
 
 function startQuiz(){
-    $('.js-restartBtn').on('click', function(e){
+    $('.js-restartBtn').on('click', function(e){//listens for clicks on restart button in nav element
         restartQuiz();
     });
-    $('.js-startBtn').on('click', function(e){
-        $('.js-startPg').remove();
-        renderQuestion();
+    $('.js-startBtn').on('click', function(e){//listens for clisks on start quiz button
+        $('.js-startPg').remove();//remove button
+        renderQuestion();//render first question
     });
 }
 function arrayShuffler(currentQNum, inArray){
@@ -41,16 +41,16 @@ function arrayShuffler(currentQNum, inArray){
     return ansArray;
 }
 function renderQuestion(){
-    let dummyArray = questionAns.slice();
-    let currentPainting = questionAns[questionCounter].painting;
+    let dummyArray = questionAns.slice();// copy answer array so original instance isn't changed
+    let currentPainting = questionAns[questionCounter].painting; 
     let currentCorrect = questionAns[questionCounter].artist;
     let currentQ = questionCounter;
-    let falseAnsArray = arrayShuffler(currentQ, dummyArray);
-    falseAnsArray.push(questionAns[currentQ]);
+    let falseAnsArray = arrayShuffler(currentQ, dummyArray);//remove correct answer from array, shuffle order of answers
+    falseAnsArray.push(questionAns[currentQ]);//put correct answer back in array
     questionCounter +=1;
-    falseAnsArray.splice(0, 5)
-    arrayShuffler(1, falseAnsArray);
-    $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);
+    falseAnsArray.splice(0, 5)//remove extra answers
+    arrayShuffler(1, falseAnsArray);//scramble answer order again, remove first element so you have 4 answers
+    $('.js-Q-Counter').html(`Question: ${questionCounter}/10`);//display question and answers
     $('.js-Q-box').html(`<h2 class='js-qPrompt'>Who painted ${currentPainting}?</h2><img src="${questionAns[currentQ].pImg}" alt="${currentPainting}" class="promptImage">`);
     $('.js-fieldset').html(
         `<button class="responseBtn js-deleter buttonCSS" id="btn1"><img src="${falseAnsArray[0].aImg}" alt="${falseAnsArray[0].artist}" class="btnImg"><div class="btnContainer"><label for="btn1"><p>${falseAnsArray[0].artist}</p><label></div></button>`+
@@ -60,19 +60,19 @@ function renderQuestion(){
     onAnsClick(currentCorrect);
 }
 function onAnsClick(correctAns){
-    $('.responseBtn').on('click', function(e){
-        if(questionCounter===10){
+    $('.responseBtn').on('click', function(e){//if a response button is clicked
+        if(questionCounter===10){// end the quiz if this is the last question
             finishedQuiz();
-        }else if($(this).text()===correctAns){
+        }else if($(this).text()===correctAns){//increase score and display correct feedback page on correct answer
             scoreCounter += 1;
             renderFeedbackPg(1);
         }else{
-            renderFeedbackPg(0, correctAns);
+            renderFeedbackPg(0, correctAns);//display incorrect feedback page when wrong answer clicked
         }
     })
 }
-function renderFeedbackPg(ansNum, inAns){
-    if(ansNum===1){
+function renderFeedbackPg(ansNum, inAns){//replaces questions and answers with feedback correct/incorrect responses
+    if(ansNum===1){                      //listen for clicks and move to next question 
         $('.js-qPrompt').remove();
         $('.responseBtn').remove();
         $('.js-S-Counter').html(`Score: ${scoreCounter}/10`);
@@ -88,7 +88,7 @@ function renderFeedbackPg(ansNum, inAns){
         renderQuestion();
     })
 }
-function restartQuiz(){
+function restartQuiz(){// remove elements from queston and answer sections and go back to start, reset score/question#
     $('.js-qPrompt').remove();
     $('.js-deleter').remove();
     $('.responseBtn').remove();
@@ -100,7 +100,7 @@ function restartQuiz(){
     $('.js-S-Counter').html(`Score: ${scoreCounter}/10`);
     startQuiz();
 }
-function finishedQuiz(){
+function finishedQuiz(){//show final score and restart button
     $('.js-qPrompt').remove();
     $('.responseBtn').remove();
     $('.js-Q-box').html('<h2 class="js-qPrompt">Quiz Complete!</h2>' + `<h2 class="js-qPrompt">Score: ${scoreCounter}/10</h2>`);
